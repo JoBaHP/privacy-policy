@@ -139,6 +139,45 @@
 
   .fill { color: var(--faint); font-style: italic; }
 
+  /* Site Navigation */
+  .site-nav {
+    display: inline-flex;
+    gap: 6px;
+    padding: 4px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin: 0 0 24px;
+  }
+  .site-nav a {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .8rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+  .site-nav a:hover {
+    color: var(--accent-ink);
+    background: var(--accent-soft);
+  }
+  .site-nav a.active {
+    background: var(--accent);
+    color: #ffffff;
+    font-weight: 600;
+  }
+  :root[data-theme="dark"] .site-nav a.active {
+    color: #0e161d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .site-nav a.active {
+      color: #0e161d;
+    }
+  }
+
   footer {
     margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--line);
     font-family: "IBM Plex Mono", monospace; font-size: .78rem; color: var(--faint);
@@ -149,6 +188,11 @@
 </style>
 
 <div class="wrap">
+  <nav class="site-nav" aria-label="Main Navigation">
+    <a href="index.html" class="active" aria-current="page">Privacy Policy</a>
+    <a href="user-guide.html">User Guide</a>
+  </nav>
+
   <header>
     <p class="eyebrow">ServiceNow MSP Bridge</p>
     <h1>Privacy Policy</h1>
@@ -287,6 +331,6 @@
 
   <footer>
     <span>ServiceNow MSP Bridge — Privacy Policy</span>
-    <span>Updated 2026-09-03</span>
+    <span><a href="user-guide.html">User Guide →</a> &nbsp;·&nbsp; Updated 2026-09-03</span>
   </footer>
 </div>

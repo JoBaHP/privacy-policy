@@ -1,0 +1,234 @@
+<title>ServiceNow MSP Bridge Guide</title>
+<meta name="description" content="Installation and usage guide for the ServiceNow MSP Bridge app for monday.com.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground:#f4f7f8; --surface:#ffffff; --ink:#16232e; --muted:#53646f; --faint:#8593a0;
+    --line:#e2e9ec; --accent:#0f766a; --accent-ink:#0b5a50; --accent-soft:#dcefeb;
+    --code-bg:#eaf1f2; --warn-bg:#fff5e6; --warn-line:#f0c27a; --warn-ink:#8a5a12;
+    --shadow:0 1px 2px rgba(22,35,46,.05), 0 8px 30px rgba(22,35,46,.05);
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --ground:#0e161d; --surface:#15212b; --ink:#e7eef2; --muted:#a2b2be; --faint:#6a7c88;
+    --line:#26333e; --accent:#43c6b6; --accent-ink:#6ad7c9; --accent-soft:#113732;
+    --code-bg:#1a2732; --warn-bg:#2a2012; --warn-line:#5c451f; --warn-ink:#e8b872;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.35);
+  }}
+  :root[data-theme="dark"]{
+    --ground:#0e161d; --surface:#15212b; --ink:#e7eef2; --muted:#a2b2be; --faint:#6a7c88;
+    --line:#26333e; --accent:#43c6b6; --accent-ink:#6ad7c9; --accent-soft:#113732;
+    --code-bg:#1a2732; --warn-bg:#2a2012; --warn-line:#5c451f; --warn-ink:#e8b872;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box;}
+  body{background:var(--ground); color:var(--ink); font-family:"IBM Plex Sans",system-ui,sans-serif;
+    font-size:16px; line-height:1.72; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:800px; margin:0 auto; padding:clamp(32px,6vw,72px) clamp(20px,5vw,40px) 96px;}
+  .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:500; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--accent-ink); margin:0 0 14px; display:inline-flex; align-items:center; gap:8px;}
+  .eyebrow::before{content:""; width:22px; height:1px; background:var(--accent);}
+  h1{font-family:"Spectral",Georgia,serif; font-weight:600; font-size:clamp(2.1rem,5vw,2.9rem);
+    line-height:1.08; letter-spacing:-.01em; margin:0 0 16px; text-wrap:balance;}
+  .lead{font-size:1.08rem; color:var(--muted); margin:0 0 8px; max-width:62ch;}
+  hr.rule{border:0; border-top:1px solid var(--line); margin:38px 0;}
+  section{margin:38px 0; scroll-margin-top:24px;}
+  h2{font-family:"Spectral",Georgia,serif; font-weight:600; font-size:1.42rem; line-height:1.2; margin:0 0 12px;
+    letter-spacing:-.005em; display:flex; align-items:baseline; gap:12px;}
+  h2 .n{font-family:"IBM Plex Mono",monospace; font-size:.82rem; font-weight:500; color:var(--accent);
+    letter-spacing:.04em; flex:0 0 auto; padding-top:.15em;}
+  h3{font-weight:600; font-size:1.02rem; margin:20px 0 6px;}
+  p{margin:0 0 14px; max-width:66ch;}
+  a{color:var(--accent-ink); text-underline-offset:2px;}
+  a:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px;}
+  strong{font-weight:600;}
+  code{font-family:"IBM Plex Mono",monospace; font-size:.86em; background:var(--code-bg);
+    padding:.1em .38em; border-radius:4px;}
+  ul{margin:0 0 14px; padding-left:0; list-style:none; max-width:66ch;}
+  ul li{position:relative; padding-left:22px; margin:0 0 8px;}
+  ul li::before{content:""; position:absolute; left:4px; top:.68em; width:6px; height:6px; border-radius:50%; background:var(--accent);}
+  ol.steps{counter-reset:s; list-style:none; margin:0 0 14px; padding:0; max-width:66ch;}
+  ol.steps li{counter-increment:s; position:relative; padding:0 0 16px 46px; min-height:34px;}
+  ol.steps li::before{content:counter(s); position:absolute; left:0; top:-2px; width:30px; height:30px;
+    border-radius:9px; background:var(--accent-soft); color:var(--accent-ink); font-family:"IBM Plex Mono",monospace;
+    font-weight:600; font-size:.95rem; display:grid; place-items:center;}
+  ol.steps li:not(:last-child)::after{content:""; position:absolute; left:15px; top:34px; bottom:6px; width:1px; background:var(--line);}
+  .toc{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:16px 22px;
+    box-shadow:var(--shadow); margin:8px 0 4px; columns:2; column-gap:32px;}
+  .toc a{display:block; text-decoration:none; color:var(--muted); font-size:.92rem; padding:4px 0; break-inside:avoid;}
+  .toc a:hover{color:var(--accent-ink);}
+  .toc a .tn{font-family:"IBM Plex Mono",monospace; color:var(--faint); font-size:.78rem; margin-right:8px;}
+  .callout{background:var(--accent-soft); border-radius:12px; padding:16px 20px; margin:16px 0; font-size:.96rem;
+    color:var(--ink); border:1px solid color-mix(in srgb,var(--accent) 22%,transparent);}
+  .callout.warn{background:var(--warn-bg); border-color:var(--warn-line);}
+  .callout.warn strong{color:var(--warn-ink);}
+  .tablewrap{overflow-x:auto; margin:6px 0 8px; border:1px solid var(--line); border-radius:12px; box-shadow:var(--shadow);}
+  table{width:100%; border-collapse:collapse; font-size:.92rem; background:var(--surface); min-width:520px;}
+  thead th{text-align:left; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:.72rem;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); background:var(--accent-soft);
+    padding:12px 16px; border-bottom:1px solid var(--line);}
+  tbody td{padding:12px 16px; border-bottom:1px solid var(--line); vertical-align:top; color:var(--muted);}
+  tbody td:first-child{color:var(--ink); font-weight:500; white-space:nowrap;}
+  tbody tr:last-child td{border-bottom:0;}
+  /* Site Navigation */
+  .site-nav {
+    display: inline-flex;
+    gap: 6px;
+    padding: 4px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin: 0 0 24px;
+  }
+  .site-nav a {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .8rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+  .site-nav a:hover {
+    color: var(--accent-ink);
+    background: var(--accent-soft);
+  }
+  .site-nav a.active {
+    background: var(--accent);
+    color: #ffffff;
+    font-weight: 600;
+  }
+  :root[data-theme="dark"] .site-nav a.active {
+    color: #0e161d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .site-nav a.active {
+      color: #0e161d;
+    }
+  }
+
+  footer{margin-top:52px; padding-top:22px; border-top:1px solid var(--line); font-family:"IBM Plex Mono",monospace;
+    font-size:.78rem; color:var(--faint); display:flex; flex-wrap:wrap; gap:6px 16px; justify-content:space-between;}
+  @media (max-width:560px){.toc{columns:1;} h2{gap:9px;}}
+</style>
+
+<div class="wrap">
+  <nav class="site-nav" aria-label="Main Navigation">
+    <a href="index.html">Privacy Policy</a>
+    <a href="user-guide.html" class="active" aria-current="page">User Guide</a>
+  </nav>
+
+  <header>
+    <p class="eyebrow">ServiceNow MSP Bridge</p>
+    <h1>Installation &amp; User Guide</h1>
+    <p class="lead">Get your ServiceNow ITSM data into monday in a few minutes — see incidents, changes, problems and requests across every customer, act on them, and sync both ways. No ServiceNow seats for your monday users.</p>
+  </header>
+
+  <nav class="toc" aria-label="Contents">
+    <a href="#overview"><span class="tn">1</span>What it does</a>
+    <a href="#prereqs"><span class="tn">2</span>Prerequisites</a>
+    <a href="#install"><span class="tn">3</span>Install the app</a>
+    <a href="#connect"><span class="tn">4</span>Connect ServiceNow</a>
+    <a href="#authorize"><span class="tn">5</span>Authorize monday</a>
+    <a href="#use"><span class="tn">6</span>Using the command center</a>
+    <a href="#sync"><span class="tn">7</span>Sync &amp; two-way</a>
+    <a href="#plans"><span class="tn">8</span>Plans &amp; limits</a>
+    <a href="#trouble"><span class="tn">9</span>Troubleshooting</a>
+    <a href="#support"><span class="tn">10</span>Support</a>
+  </nav>
+
+  <hr class="rule">
+
+  <section id="overview">
+    <h2><span class="n">01</span>What it does</h2>
+    <p>ServiceNow MSP Bridge is a monday board view that connects to your ServiceNow instance and rolls up ITSM health <strong>per customer domain</strong>: open incidents, changes, problems, requests, SLA breaches and MTTR. You can drill into any customer, act on records (change state, add work notes, create new ones) straight from monday, and sync records onto monday boards with edits flowing <strong>both ways</strong>.</p>
+  </section>
+
+  <section id="prereqs">
+    <h2><span class="n">02</span>Prerequisites</h2>
+    <ul>
+      <li>A <strong>ServiceNow instance</strong> (any recent release). For the multi-customer rollup, <strong>Domain Separation</strong> should be enabled, with each customer as a domain.</li>
+      <li>A ServiceNow <strong>service account in the <code>global</code> domain</strong> with the <code>itil</code> and REST roles. This single account is what the app uses to read across your customer domains and write records back.</li>
+      <li>A <strong>monday.com account</strong> where you'll add the board view.</li>
+    </ul>
+    <div class="callout"><strong>Why the <code>global</code> domain?</strong> A service account in <code>global</code> can see every customer domain, so one connection covers all your customers — while each customer's data stays isolated in its own domain.</div>
+  </section>
+
+  <section id="install">
+    <h2><span class="n">03</span>Install the app</h2>
+    <ol class="steps">
+      <li>Install <strong>ServiceNow MSP Bridge</strong> from the monday marketplace.</li>
+      <li>Open any board → click the <strong>+</strong> next to the view tabs → <strong>Apps</strong> → <strong>ServiceNow MSP Bridge</strong>.</li>
+      <li>The <strong>MSP Command Center</strong> loads (showing sample data until you connect).</li>
+    </ol>
+  </section>
+
+  <section id="connect">
+    <h2><span class="n">04</span>Connect ServiceNow</h2>
+    <ol class="steps">
+      <li>Click <strong>Connect ServiceNow</strong> in the top bar.</li>
+      <li>Enter your <strong>instance subdomain</strong> (e.g. <code>dev12345</code> for <code>dev12345.service-now.com</code>), the <strong>service-account username</strong>, and its <strong>password</strong>.</li>
+      <li>Click <strong>Connect</strong>. The credentials are validated and stored <strong>encrypted</strong>. The rollup fills with your customer domains and live numbers.</li>
+    </ol>
+    <p>Your credentials are encrypted at rest and used only to talk to your own ServiceNow instance.</p>
+  </section>
+
+  <section id="authorize">
+    <h2><span class="n">05</span>Authorize monday</h2>
+    <p>To sync ServiceNow records onto your boards, the app needs permission to create and update items in your monday account. Complete the one-time <strong>monday authorization</strong> (OAuth) when prompted. This grants the app board and webhook access <strong>in your account</strong> — each account authorizes its own.</p>
+  </section>
+
+  <section id="use">
+    <h2><span class="n">06</span>Using the command center</h2>
+    <h3>The rollup</h3>
+    <p>Each row is a customer domain with its open <strong>incidents, changes, problems, requests</strong>, SLA breaches and MTTR. The tiles at the top total everything across customers.</p>
+    <h3>Drill in &amp; act</h3>
+    <ul>
+      <li><strong>Click a customer domain</strong> to expand its records, grouped by type.</li>
+      <li>Change a record's <strong>state</strong> or add a <strong>work note</strong> — it writes straight back to ServiceNow.</li>
+      <li><strong>+ New</strong> creates a record (incident/change/problem/request) in that customer's domain.</li>
+    </ul>
+  </section>
+
+  <section id="sync">
+    <h2><span class="n">07</span>Sync &amp; two-way</h2>
+    <ol class="steps">
+      <li><strong>Link</strong> a customer domain to the current board (the <em>Sync</em> column) to map where its records sync.</li>
+      <li>Click <strong>Sync now</strong> to create/update monday items for that domain's records. Newly-linked domains backfill their existing records automatically.</li>
+      <li>Click <strong>Enable 2-way</strong> so edits to those monday items push back into ServiceNow.</li>
+    </ol>
+  </section>
+
+  <section id="plans">
+    <h2><span class="n">08</span>Plans &amp; limits</h2>
+    <p>Each plan sets how many <strong>customer domains</strong> you can connect at once. The badge in the header shows your plan and usage (e.g. <code>Growth · 8/20 domains</code>). Upgrade to link more.</p>
+  </section>
+
+  <section id="trouble">
+    <h2><span class="n">09</span>Troubleshooting</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>You see</th><th>What it means / fix</th></tr></thead>
+        <tbody>
+          <tr><td>"sample data — couldn't reach ServiceNow"</td><td>The instance is unreachable (a dev instance may be asleep) or the credentials are wrong. Wake the instance and reconnect.</td></tr>
+          <tr><td>Empty rollup after connecting</td><td>The service account may not be in the <code>global</code> domain, or your records sit in non-customer domains. Confirm the account is in <code>global</code> with <code>itil</code> + REST.</td></tr>
+          <tr><td>Sync reports 0 created</td><td><strong>Link</strong> the domain to a board first. Newly-linked domains backfill on the next <strong>Sync now</strong>.</td></tr>
+          <tr><td>"monday not authorized"</td><td>Complete the monday authorization (step 5) so the app can write to your boards.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="support">
+    <h2><span class="n">10</span>Support</h2>
+    <p>Questions or issues? Email <a href="mailto:jocoraos@yahoo.com">jocoraos@yahoo.com</a> and we'll help you get set up.</p>
+  </section>
+
+  <footer>
+    <span>ServiceNow MSP Bridge — User Guide</span>
+    <span><a href="index.html">Privacy Policy →</a> &nbsp;·&nbsp; Updated 2026-09-03</span>
+  </footer>
+</div>
