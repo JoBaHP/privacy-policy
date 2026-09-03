@@ -1,0 +1,240 @@
+<title>MSP Bridge Terms of Service</title>
+<meta name="description" content="Terms of Service for the ServiceNow MSP Bridge app for monday.com.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground:#f4f7f8; --surface:#ffffff; --ink:#16232e; --muted:#53646f; --faint:#8593a0;
+    --line:#e2e9ec; --accent:#0f766a; --accent-ink:#0b5a50; --accent-soft:#dcefeb;
+    --code-bg:#eaf1f2; --warn-bg:#fff5e6; --warn-line:#f0c27a; --warn-ink:#8a5a12;
+    --shadow:0 1px 2px rgba(22,35,46,.05), 0 8px 30px rgba(22,35,46,.05);
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --ground:#0e161d; --surface:#15212b; --ink:#e7eef2; --muted:#a2b2be; --faint:#6a7c88;
+    --line:#26333e; --accent:#43c6b6; --accent-ink:#6ad7c9; --accent-soft:#113732;
+    --code-bg:#1a2732; --warn-bg:#2a2012; --warn-line:#5c451f; --warn-ink:#e8b872;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.35);
+  }}
+  :root[data-theme="dark"]{
+    --ground:#0e161d; --surface:#15212b; --ink:#e7eef2; --muted:#a2b2be; --faint:#6a7c88;
+    --line:#26333e; --accent:#43c6b6; --accent-ink:#6ad7c9; --accent-soft:#113732;
+    --code-bg:#1a2732; --warn-bg:#2a2012; --warn-line:#5c451f; --warn-ink:#e8b872;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box;}
+  body{background:var(--ground); color:var(--ink); font-family:"IBM Plex Sans",system-ui,sans-serif;
+    font-size:16px; line-height:1.72; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:800px; margin:0 auto; padding:clamp(32px,6vw,72px) clamp(20px,5vw,40px) 96px;}
+  .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:500; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--accent-ink); margin:0 0 14px; display:inline-flex; align-items:center; gap:8px;}
+  .eyebrow::before{content:""; width:22px; height:1px; background:var(--accent);}
+  h1{font-family:"Spectral",Georgia,serif; font-weight:600; font-size:clamp(2.1rem,5vw,2.9rem);
+    line-height:1.08; letter-spacing:-.01em; margin:0 0 16px; text-wrap:balance;}
+  .lead{font-size:1.08rem; color:var(--muted); margin:0 0 8px; max-width:62ch;}
+  .meta{font-family:"IBM Plex Mono",monospace; font-size:.8rem; color:var(--faint); margin:14px 0 0;}
+  hr.rule{border:0; border-top:1px solid var(--line); margin:38px 0;}
+  section{margin:34px 0; scroll-margin-top:24px;}
+  h2{font-family:"Spectral",Georgia,serif; font-weight:600; font-size:1.42rem; line-height:1.2; margin:0 0 12px;
+    letter-spacing:-.005em; display:flex; align-items:baseline; gap:12px;}
+  h2 .n{font-family:"IBM Plex Mono",monospace; font-size:.82rem; font-weight:500; color:var(--accent);
+    letter-spacing:.04em; flex:0 0 auto; padding-top:.15em;}
+  h3{font-weight:600; font-size:1.02rem; margin:20px 0 6px;}
+  p{margin:0 0 14px; max-width:66ch;}
+  a{color:var(--accent-ink); text-underline-offset:2px;}
+  a:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px;}
+  strong{font-weight:600;}
+  code{font-family:"IBM Plex Mono",monospace; font-size:.86em; background:var(--code-bg);
+    padding:.1em .38em; border-radius:4px;}
+  ul{margin:0 0 14px; padding-left:0; list-style:none; max-width:66ch;}
+  ul li{position:relative; padding-left:22px; margin:0 0 8px;}
+  ul li::before{content:""; position:absolute; left:4px; top:.68em; width:6px; height:6px; border-radius:50%; background:var(--accent);}
+  .toc{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:16px 22px;
+    box-shadow:var(--shadow); margin:8px 0 4px; columns:2; column-gap:32px;}
+  .toc a{display:block; text-decoration:none; color:var(--muted); font-size:.92rem; padding:4px 0; break-inside:avoid;}
+  .toc a:hover{color:var(--accent-ink);}
+  .toc a .tn{font-family:"IBM Plex Mono",monospace; color:var(--faint); font-size:.78rem; margin-right:8px;}
+  .callout{background:var(--accent-soft); border-radius:12px; padding:16px 20px; margin:16px 0; font-size:.96rem;
+    color:var(--ink); border:1px solid color-mix(in srgb,var(--accent) 22%,transparent);}
+  .callout.warn{background:var(--warn-bg); border-color:var(--warn-line);}
+  .callout.warn strong{color:var(--warn-ink);}
+  /* Site Navigation */
+  .site-nav {
+    display: inline-flex;
+    gap: 6px;
+    padding: 4px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin: 0 0 24px;
+  }
+  .site-nav a {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .8rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+  .site-nav a:hover {
+    color: var(--accent-ink);
+    background: var(--accent-soft);
+  }
+  .site-nav a.active {
+    background: var(--accent);
+    color: #ffffff;
+    font-weight: 600;
+  }
+  :root[data-theme="dark"] .site-nav a.active {
+    color: #0e161d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .site-nav a.active {
+      color: #0e161d;
+    }
+  }
+
+  footer{margin-top:52px; padding-top:22px; border-top:1px solid var(--line); font-family:"IBM Plex Mono",monospace;
+    font-size:.78rem; color:var(--faint); display:flex; flex-wrap:wrap; gap:6px 16px; justify-content:space-between;}
+  @media (max-width:560px){.toc{columns:1;} h2{gap:9px;}}
+</style>
+
+<div class="wrap">
+  <nav class="site-nav" aria-label="Main Navigation">
+    <a href="index.html">Privacy Policy</a>
+    <a href="user-guide.html">User Guide</a>
+    <a href="terms-of-service.html" class="active" aria-current="page">Terms of Service</a>
+  </nav>
+
+  <header>
+    <p class="eyebrow">ServiceNow MSP Bridge</p>
+    <h1>Terms of Service</h1>
+    <p class="lead">These terms govern your installation and use of the ServiceNow MSP Bridge application for monday.com. Please read them carefully — installing the app means you accept them.</p>
+    <p class="meta">Effective 3 September 2026 · Last updated 3 September 2026</p>
+  </header>
+
+  <nav class="toc" aria-label="Contents">
+    <a href="#accept"><span class="tn">1</span>Agreement to these terms</a>
+    <a href="#service"><span class="tn">2</span>The service</a>
+    <a href="#eligibility"><span class="tn">3</span>Eligibility &amp; account</a>
+    <a href="#thirdparty"><span class="tn">4</span>ServiceNow &amp; monday</a>
+    <a href="#responsibilities"><span class="tn">5</span>Your responsibilities</a>
+    <a href="#fees"><span class="tn">6</span>Plans, fees &amp; billing</a>
+    <a href="#comms"><span class="tn">7</span>Communications</a>
+    <a href="#data"><span class="tn">8</span>Data &amp; privacy</a>
+    <a href="#accept-use"><span class="tn">9</span>Acceptable use</a>
+    <a href="#ip"><span class="tn">10</span>Intellectual property</a>
+    <a href="#warranty"><span class="tn">11</span>Disclaimers</a>
+    <a href="#liability"><span class="tn">12</span>Limitation of liability</a>
+    <a href="#indemnity"><span class="tn">13</span>Indemnification</a>
+    <a href="#term"><span class="tn">14</span>Term &amp; termination</a>
+    <a href="#changes"><span class="tn">15</span>Changes to these terms</a>
+    <a href="#law"><span class="tn">16</span>Governing law</a>
+    <a href="#contact"><span class="tn">17</span>Contact</a>
+  </nav>
+
+  <hr class="rule">
+
+  <section id="accept">
+    <h2><span class="n">01</span>Agreement to these terms</h2>
+    <p>These Terms of Service ("<strong>Terms</strong>") are a binding agreement between you — the individual or entity installing or using the app — and <strong>Jovan Raosavljevic</strong> ("<strong>we</strong>", "<strong>us</strong>", "<strong>our</strong>"), the provider of the <strong>ServiceNow MSP Bridge</strong> application (the "<strong>App</strong>"). By installing, accessing, or using the App, you agree to be bound by these Terms and by our <a href="index.html">Privacy Policy</a>. If you do not agree, do not install or use the App.</p>
+    <p>If you accept these Terms on behalf of an organization, you represent that you have authority to bind that organization, and "you" refers to that organization.</p>
+  </section>
+
+  <section id="service">
+    <h2><span class="n">02</span>The service</h2>
+    <p>The App is a monday.com board view that connects to a ServiceNow instance you control and surfaces ITSM data — incidents, changes, problems and requests — inside monday.com. It provides a per-customer-domain rollup, drill-down, record write-back, and two-way synchronization between ServiceNow records and monday.com items.</p>
+    <p>We may add, change, or remove features over time. We may also set reasonable technical limits (for example, request rates or the number of connected customer domains per plan).</p>
+  </section>
+
+  <section id="eligibility">
+    <h2><span class="n">03</span>Eligibility &amp; account</h2>
+    <p>To use the App you need an active monday.com account and a ServiceNow instance you are authorized to access. You are responsible for maintaining the confidentiality of any credentials you enter and for all activity that occurs under your connection. You must be at least the age of majority in your jurisdiction and legally able to enter into these Terms.</p>
+  </section>
+
+  <section id="thirdparty">
+    <h2><span class="n">04</span>ServiceNow &amp; monday.com</h2>
+    <p>The App integrates with <strong>monday.com</strong> and <strong>ServiceNow</strong>, which are third-party platforms we do not own or control. Your use of each platform is governed by that platform's own terms. You are responsible for holding valid, appropriately licensed accounts for both, and for ensuring your use of them through the App complies with their terms.</p>
+    <p>We are not affiliated with, endorsed by, or sponsored by ServiceNow, Inc. or monday.com Ltd. "ServiceNow" and "monday.com" are trademarks of their respective owners and are used here only to describe interoperability.</p>
+  </section>
+
+  <section id="responsibilities">
+    <h2><span class="n">05</span>Your responsibilities</h2>
+    <ul>
+      <li>Provide and maintain a ServiceNow service account (with appropriate roles) that the App uses to read and write records on your behalf, and keep its credentials current.</li>
+      <li>Ensure you have the right to connect the ServiceNow data you expose through the App and to grant the App the monday.com permissions it requests.</li>
+      <li>Use the App only with data and customer domains you are authorized to access.</li>
+      <li>Keep your own backups; the App is an integration layer, not a system of record.</li>
+    </ul>
+  </section>
+
+  <section id="fees">
+    <h2><span class="n">06</span>Plans, fees &amp; billing</h2>
+    <p>The App is offered on tiered subscription plans, priced by the number of connected customer domains. A free trial may be available. Paid plans are billed <strong>through monday.com's monetization and billing system</strong> in accordance with monday.com's payment terms; we do not process your payment details directly.</p>
+    <p>Fees are charged in advance on a recurring basis and, except where required by law, are non-refundable. Applicable taxes may apply. We may change plan pricing or structure on a prospective basis; changes take effect at your next renewal, and continued use after that constitutes acceptance. Exceeding your plan's limits may require an upgrade to continue using the affected features.</p>
+  </section>
+
+  <section id="comms">
+    <h2><span class="n">07</span>Communications</h2>
+    <div class="callout"><strong>Contacting app installers.</strong> By installing the App, you agree that we may contact you — using the email address associated with your installation or that you provide to us — to send service, transactional, security, onboarding, and product-related messages about the App, including updates, important notices, and occasional information about features or plans. You may opt out of non-essential product communications at any time by contacting us; we may still send essential service and security messages while you use the App.</div>
+    <p>We will handle any contact details in accordance with our <a href="index.html">Privacy Policy</a>.</p>
+  </section>
+
+  <section id="data">
+    <h2><span class="n">08</span>Data &amp; privacy</h2>
+    <p>Our handling of your data — including ServiceNow credentials and monday.com authorization tokens, which are encrypted at rest — is described in our <a href="index.html">Privacy Policy</a>, which forms part of these Terms. You retain ownership of your ServiceNow and monday.com data; you grant us the limited rights needed to operate the App and provide the service to you.</p>
+  </section>
+
+  <section id="accept-use">
+    <h2><span class="n">09</span>Acceptable use</h2>
+    <p>You agree not to: (a) use the App unlawfully or in violation of any third party's rights; (b) attempt to gain unauthorized access to the App, its infrastructure, or other users' data; (c) reverse engineer, decompile, or attempt to derive source code except as permitted by law; (d) resell, sublicense, or provide the App as a service to third parties outside your own organization's use without our written consent; or (e) interfere with or disrupt the integrity or performance of the App or the platforms it connects to.</p>
+  </section>
+
+  <section id="ip">
+    <h2><span class="n">10</span>Intellectual property</h2>
+    <p>The App, including its software, design, and content (excluding your data and third-party marks), is owned by us and protected by intellectual-property laws. Subject to these Terms and payment of applicable fees, we grant you a limited, non-exclusive, non-transferable, revocable license to use the App for your internal business purposes. All rights not expressly granted are reserved.</p>
+  </section>
+
+  <section id="warranty">
+    <h2><span class="n">11</span>Disclaimers</h2>
+    <p>The App is provided "<strong>as is</strong>" and "<strong>as available</strong>", without warranties of any kind, whether express, implied, or statutory, including implied warranties of merchantability, fitness for a particular purpose, and non-infringement. We do not warrant that the App will be uninterrupted, error-free, or secure, or that it will meet your requirements. You are responsible for evaluating whether the App is suitable for your use.</p>
+  </section>
+
+  <section id="liability">
+    <h2><span class="n">12</span>Limitation of liability</h2>
+    <p>To the maximum extent permitted by law, we will not be liable for any indirect, incidental, special, consequential, or punitive damages, or for any loss of profits, revenue, data, or goodwill, arising out of or relating to your use of (or inability to use) the App. Our total aggregate liability arising out of or relating to these Terms or the App will not exceed the greater of the amounts you paid us for the App in the twelve (12) months before the event giving rise to the claim, or fifty US dollars ($50). Nothing in these Terms limits liability that cannot be limited under applicable law.</p>
+  </section>
+
+  <section id="indemnity">
+    <h2><span class="n">13</span>Indemnification</h2>
+    <p>You agree to indemnify and hold us harmless from any claims, damages, liabilities, and expenses (including reasonable legal fees) arising from your misuse of the App, your violation of these Terms, or your violation of any law or third-party right, including the terms of ServiceNow or monday.com.</p>
+  </section>
+
+  <section id="term">
+    <h2><span class="n">14</span>Term &amp; termination</h2>
+    <p>These Terms apply while the App is installed. You may stop using the App at any time by uninstalling it from your monday.com account. We may suspend or terminate your access if you breach these Terms, if required by law, or if we discontinue the App, with reasonable notice where practicable. On termination, your license ends and we will delete or de-provision stored connection data associated with your installation in accordance with our <a href="index.html">Privacy Policy</a>. Sections that by their nature should survive (including fees owed, intellectual property, disclaimers, limitation of liability, and indemnification) will survive termination.</p>
+  </section>
+
+  <section id="changes">
+    <h2><span class="n">15</span>Changes to these terms</h2>
+    <p>We may update these Terms from time to time. When we do, we will revise the "Last updated" date above and, for material changes, provide reasonable notice through the App or by email. Your continued use of the App after changes take effect constitutes acceptance of the revised Terms.</p>
+  </section>
+
+  <section id="law">
+    <h2><span class="n">16</span>Governing law</h2>
+    <p>These Terms are governed by the laws of <strong>[England and Wales / your jurisdiction]</strong>, without regard to its conflict-of-laws rules, and the courts of that jurisdiction will have exclusive jurisdiction over any dispute, except where mandatory local law provides otherwise.</p>
+  </section>
+
+  <section id="contact">
+    <h2><span class="n">17</span>Contact</h2>
+    <p>Questions about these Terms? Contact us at <a href="mailto:jocoraos@yahoo.com">jocoraos@yahoo.com</a>.</p>
+  </section>
+
+  <footer>
+    <span>ServiceNow MSP Bridge — Terms of Service</span>
+    <span>Updated 2026-09-03</span>
+  </footer>
+</div>
